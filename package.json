@@ -17,5 +17,10 @@
   "bugs": {
     "url": "https://github.com/luscious-scoop/knights_travails/issues"
   },
-  "homepage": "https://github.com/luscious-scoop/knights_travails#readme"
+  "homepage": "https://github.com/luscious-scoop/knights_travails#readme",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.11.0",
+    "globals": "^17.12.0"
+  }
 }
