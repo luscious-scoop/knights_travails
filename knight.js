@@ -2,16 +2,6 @@ function pushCoordinates(list, x, y) {
   list.push([x, y]);
 }
 
-function doesCoordinatesExist(list, x, y, index = 0) {
-  doesCoordinatesExist(list[index], x, y, index + 1);
-
-  if (list.includes(x) && list.includes(y)) {
-    return true;
-  }
-  if (index > list.length - 1) {
-    return false;
-  }
-}
 function knightMoves(start, end) {
   let list = [];
 
@@ -50,9 +40,19 @@ function knightMoves(start, end) {
     pushCoordinates(list, x - 1, y + 2);
   }
 
-  return list.sort((a, b) => a - b);
+  return list;
 }
 
 console.log(knightMoves([3, 3], [4, 3]));
 
 // [1,2], [2,1], [4,1], [5,2], [5,4], [4,5], [2,5], [1,4]
+
+doesCoordinatesExist(
+  [
+    [1, 2],
+    [4, 6],
+    [3, 4],
+  ],
+  3,
+  4
+);
