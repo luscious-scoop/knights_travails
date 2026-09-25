@@ -46,13 +46,3 @@ function knightMoves(start, end) {
 console.log(knightMoves([3, 3], [4, 3]));
 
 // [1,2], [2,1], [4,1], [5,2], [5,4], [4,5], [2,5], [1,4]
-
-doesCoordinatesExist(
-  [
-    [1, 2],
-    [4, 6],
-    [3, 4],
-  ],
-  3,
-  4
-);
