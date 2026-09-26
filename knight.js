@@ -47,7 +47,7 @@ function knightMoves(start, end) {
 
 let list = knightMoves([0, 0], [4, 3]);
 
-function doesCoordinatesEexist(x, y) {
+function doesCoordinatesExist(x, y) {
   for (let i = 0; i < list.length; i++) {
     if (list[i][0] === x && list[i][1] === y) {
       return true;
