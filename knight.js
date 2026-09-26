@@ -1,5 +1,38 @@
-function pushCoordinates(list, x, y) {
-  list.push([x, y]);
+function getAllPossibleMoves(x, y) {
+  const moves = [];
+
+  if (x + 1 < 7 && y + 2 < 7) {
+    moves.push([x + 1, y + 2]);
+  }
+
+  if (x + 2 < 7 && y + 1 < 7) {
+    moves.push([x + 2, y + 1]);
+  }
+  if (x - 1 >= 0 && y - 2 >= 0) {
+    moves.push([x - 1, y - 2]);
+  }
+
+  if (x - 2 >= 0 && y - 1 >= 0) {
+    moves.push([x - 2, y - 1]);
+  }
+
+  if (x - 2 >= 0 && y + 1 < 7) {
+    moves.push([x - 2, y + 1]);
+  }
+
+  if (x + 1 < 7 && y - 2 >= 0) {
+    moves.push([x + 1, y - 2]);
+  }
+
+  if (x + 2 < 7 && y - 1 >= 0) {
+    moves.push([x + 2, y - 1]);
+  }
+
+  if (x - 1 >= 0 && y + 2 < 7) {
+    moves.push([x - 1, y + 2]);
+  }
+
+  return moves;
 }
 
 function knightMoves(start, end) {
@@ -9,40 +42,17 @@ function knightMoves(start, end) {
 
   let [x1, y1] = end;
 
-  if (x + 1 < 7 && y + 2 < 7) {
-    pushCoordinates(list, x + 1, y + 2);
-  }
-
-  if (x + 2 < 7 && y + 1 < 7) {
-    pushCoordinates(list, x + 2, y + 1);
-  }
-  if (x - 1 >= 0 && y - 2 >= 0) {
-    pushCoordinates(list, x - 1, y - 2);
-  }
-
-  if (x - 2 >= 0 && y - 1 >= 0) {
-    pushCoordinates(list, x - 2, y - 1);
-  }
-
-  if (x - 2 >= 0 && y + 1 < 7) {
-    pushCoordinates(list, x - 2, y + 1);
-  }
-
-  if (x + 1 < 7 && y - 2 >= 0) {
-    pushCoordinates(list, x + 1, y - 2);
-  }
-
-  if (x + 2 < 7 && y - 1 >= 0) {
-    pushCoordinates(list, x + 2, y - 1);
-  }
-
-  if (x - 1 >= 0 && y + 2 < 7) {
-    pushCoordinates(list, x - 1, y + 2);
-  }
-
-  return list;
+  return getAllPossibleMoves(x, y);
 }
 
-console.log(knightMoves([3, 3], [4, 3]));
+let list = knightMoves([0, 0], [4, 3]);
 
-// [1,2], [2,1], [4,1], [5,2], [5,4], [4,5], [2,5], [1,4]
+function doesCoordinatesEexist(x, y) {
+  for (let i = 0; i < list.length; i++) {
+    if (list[i][0] === x && list[i][1] === y) {
+      return true;
+    }
+  }
+
+  return false;
+}
