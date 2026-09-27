@@ -2,34 +2,66 @@ function getAllPossibleMoves(x, y) {
   const moves = [];
 
   if (x + 1 < 7 && y + 2 <= 7) {
-    moves.push([x + 1, y + 2]);
+    moves.push({
+      distance: null,
+      pre: null,
+      vertex: [x + 1, y + 2],
+    });
   }
 
-  if (x + 2 < 7 && y + 1 <= 7) {
-    moves.push([x + 2, y + 1]);
+  if (x + 2 <= 7 && y + 1 <= 7) {
+    moves.push({
+      distance: null,
+      pre: null,
+      vertex: [x + 2, y + 1],
+    });
   }
   if (x - 1 >= 0 && y - 2 >= 0) {
-    moves.push([x - 1, y - 2]);
+    moves.push({
+      distance: null,
+      pre: null,
+      vertex: [x - 1, y - 2],
+    });
   }
 
   if (x - 2 >= 0 && y - 1 >= 0) {
-    moves.push([x - 2, y - 1]);
+    moves.push({
+      distance: null,
+      pre: null,
+      vertex: [x - 2, y - 1],
+    });
   }
 
   if (x - 2 >= 0 && y + 1 <= 7) {
-    moves.push([x - 2, y + 1]);
+    moves.push({
+      distance: null,
+      pre: null,
+      vertex: [x - 2, y + 1],
+    });
   }
 
   if (x + 1 <= 7 && y - 2 >= 0) {
-    moves.push([x + 1, y - 2]);
+    moves.push({
+      distance: null,
+      pre: null,
+      vertex: [x + 1, y - 2],
+    });
   }
 
   if (x + 2 <= 7 && y - 1 >= 0) {
-    moves.push([x + 2, y - 1]);
+    moves.push({
+      distance: null,
+      pre: null,
+      vertex: [x + 2, y - 1],
+    });
   }
 
   if (x - 1 >= 0 && y + 2 <= 7) {
-    moves.push([x - 1, y + 2]);
+    moves.push({
+      distance: null,
+      pre: null,
+      vertex: [x - 1, y + 2],
+    });
   }
 
   return moves;
@@ -40,18 +72,30 @@ function knightMoves(start, end) {
 
   const Q = [];
 
-  Q.push(start);
-  let count = 0;
+  Q.push({
+    distance: 0,
+    pre: null,
+    vertex: start,
+  });
+
   while (Q.length > 0) {
     const move = Q.shift();
 
-    if (move[0] === x1 && move[1] === y1) {
-      return count;
+    if (move.vertex[0] === x1 && move.vertex[1] === y1) {
+      return `You made it in ${move.distance} moves! Here's your path:
+              [${start}]
+              [${move.pre.vertex}]
+              [${move.vertex}]  `;
     }
+    Q.push(...getAllPossibleMoves(move.vertex[0], move.vertex[1]));
 
-    Q.push(...getAllPossibleMoves(move[0], move[1]));
-    count++;
+    for (let i = 0; i < Q.length; i++) {
+      if (Q[i].pre === null) {
+        Q[i].pre = move;
+        Q[i].distance = move.distance + 1;
+      }
+    }
   }
 }
 
-console.log(knightMoves([0, 0], [2, 1]));
+console.log(knightMoves([3, 3], [4, 3]));
