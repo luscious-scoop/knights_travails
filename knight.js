@@ -36,12 +36,22 @@ function getAllPossibleMoves(x, y) {
 }
 
 function knightMoves(start, end) {
-  if (!start) return;
-  let [x, y] = start;
+  const [x1, y1] = end;
 
-  let [x1, y1] = end;
+  const Q = [];
 
-  if (x === x1 && y === y1) return true;
+  Q.push(start);
+  let count = 0;
+  while (Q.length > 0) {
+    const move = Q.shift();
+
+    if (move[0] === x1 && move[1] === y1) {
+      return count;
+    }
+
+    Q.push(...getAllPossibleMoves(move[0], move[1]));
+    count++;
+  }
 }
 
-console.log(knightMoves([3, 3], [4, 3]));
+console.log(knightMoves([0, 0], [2, 1]));
