@@ -1,7 +1,24 @@
+function getPath(move) {
+  let str = `You made it in ${move.distance} moves! Here's your path:
+  `;
+
+  let array = [];
+
+  while (move !== null) {
+    array.push(move.vertex);
+    move = move.pre;
+  }
+  array.reverse().forEach((el) => {
+    str += ` [${el}]
+  `;
+  });
+  return str;
+}
+
 function getAllPossibleMoves(x, y) {
   const moves = [];
 
-  if (x + 1 < 7 && y + 2 <= 7) {
+  if (x + 1 <= 7 && y + 2 <= 7) {
     moves.push({
       distance: null,
       pre: null,
@@ -82,10 +99,7 @@ function knightMoves(start, end) {
     const move = Q.shift();
 
     if (move.vertex[0] === x1 && move.vertex[1] === y1) {
-      return `You made it in ${move.distance} moves! Here's your path:
-              [${start}]
-              [${move.pre.vertex}]
-              [${move.vertex}]  `;
+      return getPath(move);
     }
     Q.push(...getAllPossibleMoves(move.vertex[0], move.vertex[1]));
 
